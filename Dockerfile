@@ -9,8 +9,9 @@ RUN apt-get update && \
 
 FROM base as build
 #ENV DEBIAN_FRONTEND=noninteractive
-RUN apt -y install \
+RUN apt-get -y install --no-install-recommends \
     build-essential \
+    ca-certificates \
     check \
     cmake \
     git \
@@ -21,7 +22,7 @@ WORKDIR /build
 RUN git clone https://github.com/n0la/rcon.git 
 RUN mkdir /build/rcon/build
 WORKDIR /build/rcon/build
-RUN cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+RUN cmake -j 5 .. -DCMAKE_INSTALL_PREFIX=/usr
 RUN make install
 
 FROM base as run
