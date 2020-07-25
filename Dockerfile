@@ -1,5 +1,6 @@
 FROM ubuntu:focal as base
 LABEL maintainer="Brian Youngstrom <briany@briany.org>"
+LABEL LAST_BUILD=2020-07-23-1919
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt -y install \
